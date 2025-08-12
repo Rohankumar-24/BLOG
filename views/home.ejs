@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <%- include("./partials/head") %>
+    <title>HomePage</title>
+    <style>
+      body {
+        background: linear-gradient(135deg, #f0f4f8, #e8ecf1);
+        font-family: 'Poppins', sans-serif;
+      }
+
+      /* Container spacing */
+      .container {
+        padding-top: 20px;
+        padding-bottom: 40px;
+      }
+
+      /* Card styling */
+      .card {
+        border: none;
+        border-radius: 16px;
+        overflow: hidden;
+        background: #fff;
+        box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+        transition: all 0.3s ease-in-out;
+      }
+
+      /* Card hover effect */
+      .card:hover {
+        transform: translateY(-8px);
+        box-shadow: 0 12px 28px rgba(0, 0, 0, 0.12);
+      }
+
+      /* Image animation */
+      .card-img-top {
+        border-bottom: 2px solid #f1f1f1;
+        transition: transform 0.4s ease-in-out;
+        object-fit: cover;
+        height: 200px;
+      }
+
+      .card:hover .card-img-top {
+        transform: scale(1.05);
+      }
+
+      /* Title styling */
+      .card-title {
+        font-weight: 600;
+        font-size: 1.1rem;
+        color: #333;
+      }
+
+      /* Bootstrap button override */
+      .btn-primary {
+        background: linear-gradient(90deg, #667eea, #764ba2);
+        border: none;
+        border-radius: 50px;
+        padding: 8px 20px;
+        transition: all 0.3s ease-in-out;
+      }
+
+      .btn-primary:hover {
+        background: linear-gradient(90deg, #5a67d8, #6b46c1);
+        transform: scale(1.05);
+      }
+
+      /* Responsive text size */
+      @media (max-width: 768px) {
+        .card-title {
+          font-size: 1rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <%- include("./partials/nav") %>
+
+    <div class="container mt-3">
+      <div class="row row-cols-1 row-cols-md-3 g-3">
+        <% blogs.forEach(blog => { %>
+          <div class="col">
+            <div class="card h-100">
+              <img 
+                src="<%= blog.coverImageURL %>" 
+                class="card-img-top" 
+                alt="<%= blog.title %>"
+              />
+              <div class="card-body">
+                <h5 class="card-title"><%= blog.title %></h5>
+                <a href="/blog/<%= blog._id %>" class="btn btn-primary">View</a>
+              </div>
+            </div>
+          </div>
+        <% }) %>
+      </div>
+    </div>
+
+    <%- include("./partials/script") %>
+  </body>
+</html>
