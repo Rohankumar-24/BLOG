@@ -10,7 +10,7 @@ const { checkForAuthenticationCookie } = require("./middlewares/authentication")
 const Blog = require("./models/blog")
 
 const app = express();
-const PORT = 8000;
+const PORT = process.env.PORT || 8000;
 
 
 app.use(express.urlencoded({ extended: false }));
@@ -27,7 +27,7 @@ app.use((req, res, next) => {
 });
 
 
-mongoose.connect("mongodb://localhost:27017/InkSpire")
+mongoose.connect(process.env.MONGO_URL)
     .then(() => console.log("MongoDB connected"))
     .catch(err => console.error("MongoDB connection error:", err));
 
